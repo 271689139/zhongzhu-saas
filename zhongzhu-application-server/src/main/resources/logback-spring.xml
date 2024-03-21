@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <contextName>logback</contextName>
+
+    <property name="console_log_pattern"
+              value=" [%red(%d{yyyy-MM-dd HH:mm:ss})] [%X{TRACE_ID}] %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{50}:%L) - %msg%n"/>
+
+    <!--日志输出路径-->
+    <property name="log_path" value="/Users/admin/logs"/>
+    <!--    不同项目修改为不同项目名    -->
+    <property name="log_name" value="zhongzhu-application-server"/>
+
+    <!--输出到控制台-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>${console_log_pattern}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <!--文件输出,时间窗口滚动-->
+    <appender name="timeFileOutput" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--日志名,指定最新的文件名，其他文件名使用FileNamePattern -->
+        <File>${log_path}/${log_name}.log</File>
+        <!--文件滚动模式-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名,可设置文件类型为gz,开启文件压缩-->
+            <FileNamePattern>${log_path}/${log_name}.log.%d{yyyy-MM-dd}.%i.gz</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+            <!--按大小分割同一天的-->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>20MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <!--输出格式-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%X{TRACE_ID}] [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <!--设置编码-->
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="kafkaLog" class="com.zhongzhu.framework.kafka.KafkaAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%X{TRACE_ID}] [%thread] %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+        <topic>test-log-local</topic>
+        <hosts>127.0.0.1:9092</hosts>
+        <appName>${log_name}</appName>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+    <root level="INFO">
+        <!--打印到控制台-->
+        <appender-ref ref="console"/>
+        <!--输出到文件-->
+        <appender-ref ref="timeFileOutput"/>
+        <!--日志输出到kafka-->
+        <appender-ref ref="kafkaLog"/>
+    </root>
+</configuration>
