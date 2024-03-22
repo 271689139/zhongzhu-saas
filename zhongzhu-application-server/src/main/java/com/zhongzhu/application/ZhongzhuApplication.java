@@ -5,6 +5,7 @@ import org.dromara.easyes.starter.register.EsMapperScan;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,8 +15,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * 启动类
  */
 @SpringBootApplication(scanBasePackages = {"com.zhongzhu.*"})
-@MapperScan({"com.zhongzhu.business.*.mapper"})
+@MapperScan({"com.zhongzhu.business.*.mapper", "com.zhongzhu.rabbit.mq.mapper"})
 @EsMapperScan(value = "com.zhongzhu.elasticsearch.mapper")
+@EnableConfigurationProperties
 public class ZhongzhuApplication implements WebMvcConfigurer {
 
     public static void main(String[] args) {

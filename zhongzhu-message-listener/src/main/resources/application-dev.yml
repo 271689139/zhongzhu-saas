@@ -58,6 +58,14 @@ spring:
         max-idle: 50  #连接池中最大的空闲连接
         min-idle: 10  #连接池中最大的空闲连接
         max-wait: 3000 # 连接池等待阻塞时间
+
+    # rabbitMq
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
 # kafka 服务地址
 kafka:
   server: 127.0.0.1:9092

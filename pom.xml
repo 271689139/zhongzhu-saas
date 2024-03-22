@@ -47,6 +47,7 @@
         <module>zhongzhu-framework</module>
         <module>zhongzhu-business</module>
         <module>zhongzhu-message-listener</module>
+        <module>zhongzhu-rabbit-mq</module>
     </modules>
 
     <dependencyManagement>

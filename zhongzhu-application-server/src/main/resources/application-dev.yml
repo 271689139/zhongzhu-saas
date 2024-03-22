@@ -58,10 +58,23 @@ spring:
         max-idle: 50  #连接池中最大的空闲连接
         min-idle: 10  #连接池中最大的空闲连接
         max-wait: 3000 # 连接池等待阻塞时间
-# kafka 服务地址
-kafka:
-  server: 127.0.0.1:9092
-  enable: true
+# rabbitMq
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    # 这个配置是保证提供者确保消息推送到交换机中，不管成不成功，都会回调
+    publisher-confirm-type: correlated
+    # 保证交换机能把消息推送到队列中
+    publisher-returns: true
+    # 这个配置是保证消费者会消费消息，手动确认
+    listener:
+      simple:
+        acknowledge-mode: manual
+
+
 
 # es 地址 配置信息 按需配置 https://www.easy-es.cn/pages/v1.x/9a3e4c/
 easy-es:
@@ -78,3 +91,17 @@ easy-es:
   max-conn-per-route: 100 # 最大连接路由数 单位:个
   # username:
   # password:
+
+
+#zhongzhu:
+#  content-type: application/json
+#  service: zhongzhu-application-server
+#  rabbit:
+#    mq:
+#      host: 127.0.0.1
+#      port: 5672
+#      username: guest
+#      password: guest
+#      vhost: /
+#      max-concurrent-consumers: 10
+#      concurrent-consumers: 3

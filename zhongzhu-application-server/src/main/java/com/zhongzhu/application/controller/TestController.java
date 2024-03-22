@@ -1,11 +1,14 @@
 package com.zhongzhu.application.controller;
 
+import com.google.common.collect.Maps;
 import com.zhongzhu.business.system.domain.SystemVersion;
 import com.zhongzhu.business.system.service.SystemVersionService;
 import com.zhongzhu.elasticsearch.service.ZhongzhuServiceLogWrapper;
 import com.zhongzhu.framework.annotations.ApiLog;
 import com.zhongzhu.framework.annotations.FrequencyControl;
 import com.zhongzhu.framework.redis.RedisOpsValueClient;
+import com.zhongzhu.rabbit.transmitter.TransMessageTransmitter;
+import com.zhongzhu.utils.constant.QueueConstant;
 import com.zhongzhu.utils.request.GenericBaseRequest;
 import com.zhongzhu.utils.response.GenericBaseResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,6 +18,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * @author admin
@@ -31,6 +36,12 @@ public class TestController {
 
     private RedisOpsValueClient<String> redisOpsValueClient;
 
+    private TransMessageTransmitter transmitter;
+
+    @Autowired
+    public void setTransmitter(TransMessageTransmitter transmitter) {
+        this.transmitter = transmitter;
+    }
 
     @Autowired
     public void setZhongzhuServiceLogWrapper(ZhongzhuServiceLogWrapper zhongzhuServiceLogWrapper) {
@@ -106,4 +117,16 @@ public class TestController {
 //        // 手动提交offset
 //        acknowledgment.acknowledge();
 //    }
+    @Operation(summary = "发送mq消息")
+    @Parameter(name = "request", description = "请求id", in = ParameterIn.QUERY)
+    @RequestMapping(value = "/testSendRabbitMq", method = RequestMethod.POST)
+    public @ResponseBody GenericBaseResponse<SystemVersion> testSendRabbitMq(@RequestBody GenericBaseRequest<Long> request) {
+        for (int i = 0; i < 10000; i++) {
+            Map<String, String> map = Maps.newHashMap();
+            map.put("message", "第" + (i + 1) + "次,say hello!");
+            transmitter.send(QueueConstant.EXCHANGE_TEST_BUSINESS, QueueConstant.TEST_ROUTE_KEY, map);
+
+        }
+        return GenericBaseResponse.ok(systemVersionService.getById(request.getParam()));
+    }
 }
