@@ -121,7 +121,7 @@ public class TestController {
     @Parameter(name = "request", description = "请求id", in = ParameterIn.QUERY)
     @RequestMapping(value = "/testSendRabbitMq", method = RequestMethod.POST)
     public @ResponseBody GenericBaseResponse<SystemVersion> testSendRabbitMq(@RequestBody GenericBaseRequest<Long> request) {
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 100; i++) {
             Map<String, String> map = Maps.newHashMap();
             map.put("message", "第" + (i + 1) + "次,say hello!");
             transmitter.send(QueueConstant.EXCHANGE_TEST_BUSINESS, QueueConstant.TEST_ROUTE_KEY, map);

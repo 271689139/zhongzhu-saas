@@ -22,32 +22,10 @@ public class RabbitDistributedTransactionConfig {
 
     private TransMessageService transMessageService;
 
-//    private RabbitMqProperty rabbitMqProperty;
-
-
     @Autowired
     public void setTransMessageService(TransMessageService transMessageService) {
         this.transMessageService = transMessageService;
     }
-
-//    @Autowired
-//    public void setRabbitMqProperty(RabbitMqProperty rabbitMqProperty) {
-//        this.rabbitMqProperty = rabbitMqProperty;
-//    }
-
-//    @Bean
-//    public ConnectionFactory connectionFactory() {
-//        CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
-//        connectionFactory.setHost(rabbitMqProperty.getHost());
-//        connectionFactory.setPort(rabbitMqProperty.getPort());
-//        connectionFactory.setUsername(rabbitMqProperty.getUsername());
-//        connectionFactory.setPassword(rabbitMqProperty.getPassword());
-//        connectionFactory.setVirtualHost(rabbitMqProperty.getVhost());
-//        connectionFactory.setPublisherConfirmType(CachingConnectionFactory.ConfirmType.CORRELATED);
-//        connectionFactory.setPublisherReturns(true);
-//        connectionFactory.createConnection();
-//        return connectionFactory;
-//    }
 
     @Bean
     public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
@@ -56,7 +34,7 @@ public class RabbitDistributedTransactionConfig {
         return admin;
     }
 
-    @Bean
+    @Bean("rabbitListenerContainerFactory")
     public RabbitListenerContainerFactory<?> rabbitListenerContainerFactory(ConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
@@ -84,9 +62,13 @@ public class RabbitDistributedTransactionConfig {
                 log.error("消息投递至交换机失败, correlationData:{}", correlationData);
             }
         });
-        rabbitTemplate.setReturnCallback((message, replyCode, replyText, exchange, routingKey) -> {
-            log.error("消息无法路由！message:{}, replyCode:{} replyText:{} exchange:{} routingKey:{}", message, replyCode, replyText, exchange, routingKey);
-            transMessageService.handleMessageReturn(message.getMessageProperties().getMessageId(), exchange, routingKey, new String(message.getBody()));
+        rabbitTemplate.setReturnsCallback((returnCallback) -> {
+            log.error("消息无法路由！message:{}, replyCode:{} replyText:{} exchange:{} routingKey:{}",
+                    new String(returnCallback.getMessage().getBody()), returnCallback.getReplyCode(),
+                    returnCallback.getReplyText(),
+                    returnCallback.getExchange(), returnCallback.getRoutingKey());
+            transMessageService.handleMessageReturn(returnCallback.getMessage().getMessageProperties().getMessageId(),
+                    returnCallback.getExchange(), returnCallback.getRoutingKey(), new String(returnCallback.getMessage().getBody()));
         });
         return rabbitTemplate;
     }

@@ -68,7 +68,7 @@ spring:
     virtual-host: /
 # kafka 服务地址
 kafka:
-  server: 127.0.0.1:9092
+  server: 172.16.30.128:9092
   logMap:
     groupId: service-log-group
     topic: test-log-local

@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author admin
  */
 @SpringBootApplication(scanBasePackages = {"com.zhongzhu.*"})
-@MapperScan({"com.zhongzhu.business.*.mapper"})
+@MapperScan({"com.zhongzhu.*.*.mapper"})
 @EsMapperScan(value = "com.zhongzhu.elasticsearch.mapper")
 public class MessageListenerApplication {
 

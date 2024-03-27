@@ -11,9 +11,14 @@ public interface QueueConstant {
     String DEAD_LETTER_EXCHANGE = "exchange.dlx";
 
     /**
-     * 交换机ttl
+     * 消息ttl
      */
-    String EXCHANGE_TTL = "exchange.ttl";
+    String EXCHANGE_TTL = "60000";
+
+    /**
+     * 死信队列 key
+     */
+    String DEAD_QUEUE_ROUTE_KEY = "dead.queue.route";
 
 
     /**
