@@ -1,0 +1,48 @@
+# 容器配置
+server:
+  undertow:
+    threads:
+      io: 200
+      worker: 400
+    direct-buffers: true
+    buffer-size: 64MB
+  port: 8764
+
+# 日志配置
+logging:
+  config: classpath:log4j2-test.xml
+# mybatis plus 配置
+mybatis-plus:
+  # 启动时是否检查 MyBatis XML 文件的存在，默认不检查
+  checkConfigLocation: false
+  # 对应的xml文件位置
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  # 实体扫描，多个package用逗号或者分号分隔
+  type-aliases-package: com.zhongzhu.*.domain
+  configuration:
+    # 开启驼峰命名
+    map-underscore-to-camel-case: true
+    # 全自动映射
+    auto-mapping-behavior: full
+    # sql日志打印
+    # log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    # 设置是否自增
+    use-generated-keys: true
+  global-config:
+    # 是否打印 Logo banner
+    banner: true
+    db-config:
+      # 主键类型
+      # AUTO 自增 NONE 空 INPUT 用户输入 ASSIGN_ID 雪花 ASSIGN_UUID 唯一 UUID
+      id-type: auto
+      # 逻辑已删除值
+      logicDeleteValue: true
+      # 逻辑未删除值
+      logicNotDeleteValue: 0
+      # 字段验证策略之 insert,在 insert 的时候的字段验证策略
+      # IGNORED 忽略 NOT_NULL 非NULL NOT_EMPTY 非空 DEFAULT 默认 NEVER 不加入 SQL
+      insertStrategy: NOT_NULL
+      # 字段验证策略之 update,在 update 的时候的字段验证策略
+      updateStrategy: NOT_NULL
+      # 字段验证策略之 select,在 select 的时候的字段验证策略既 wrapper 根据内部 entity 生成的 where 条件
+      where-strategy: NOT_NULL

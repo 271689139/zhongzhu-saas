@@ -2,12 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
     <groupId>com.zhongzhu</groupId>
     <artifactId>zhongzhu-saas</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -15,140 +9,74 @@
     <description>zhongzhu-saas</description>
     <!-- 版本-->
     <properties>
-        <java.version>1.8</java.version>
+        <zhongzhu.saas.version>1.0.0-SNAPSHOT</zhongzhu.saas.version>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <hutool.version>5.8.25</hutool.version>
-        <springfox-swagger.version>3.0.0</springfox-swagger.version>
-        <swagger-models.version>1.6.0</swagger-models.version>
-        <mybatis-plus-generator.version>3.4.1</mybatis-plus-generator.version>
-        <mybatis-plus-boot-starter.version>3.5.4</mybatis-plus-boot-starter.version>
-        <mysql-connector.version>8.0.33</mysql-connector.version>
-        <lombok.version>1.18.12</lombok.version>
-        <mybatis-plus-generator.version>3.4.1</mybatis-plus-generator.version>
-        <elasticsearch.version>7.14.0</elasticsearch.version>
-        <kafka.version>3.6.1</kafka.version>
-        <knife4j.openapi3.version>4.4.0</knife4j.openapi3.version>
-        <druid.version>1.2.21</druid.version>
-        <data-redis.version>2.7.5</data-redis.version>
-        <guava.version>32.1.2-jre</guava.version>
-        <servlet.api.version>2.4</servlet.api.version>
-        <easy-es-boot-starter.version>2.0.0-beta5</easy-es-boot-starter.version>
-        <hutool.version>5.8.25</hutool.version>
-        <fastjson.version>2.0.47</fastjson.version>
-
+        <!--spring-boot版本-->
+        <spring-boot.version>3.2.5-SNAPSHOT</spring-boot.version>
+        <!--spring-cloud版本-->
+        <spring-cloud.version>2023.0.1</spring-cloud.version>
+        <!--spring-framework版本-->
+        <spring-framework.version>6.1.5</spring-framework.version>
+        <!--cloud-alibaba版本-->
+        <spring-cloud-alibaba.version>2023.0.0.0-RC1</spring-cloud-alibaba.version>
+        <!--mapstruct版本-->
+        <mapstruct.version>1.6.0.Beta1</mapstruct.version>
+        <!--lombok-mapstruct-binding版本-->
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+        <!--lombok版本-->
+        <lombok.version>1.18.32</lombok.version>
     </properties>
     <packaging>pom</packaging>
     <modules>
-        <module>zhongzhu-application-server</module>
-        <module>zhongzhu-generate</module>
-        <module>zhongzhu-elasticsearch</module>
-        <module>zhongzhu-utils</module>
-        <module>zhongzhu-framework</module>
-        <module>zhongzhu-business</module>
-        <module>zhongzhu-message-listener</module>
-        <module>zhongzhu-rabbit-mq</module>
-        <module>zhongzhu-task</module>
+        <module>zhongzhu-saas-common</module>
+        <module>zhongzhu-saas-service</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
-            <!--knife4j-->
+            <!-- 定义 mapstruct 版本 -->
             <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
-                <version>${knife4j.openapi3.version}</version>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-parent</artifactId>
+                <version>${mapstruct.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
-
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-boot-starter.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connector.version}</version>
-            </dependency>
-
+            <!-- 定义 spring boot 版本 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-redis</artifactId>
-                <version>${data-redis.version}</version>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+
+            <!-- 定义 spring cloud 版本 -->
             <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+
+            <!-- 定义 spring cloud alibaba 版本 -->
             <dependency>
-                <groupId>org.elasticsearch.client</groupId>
-                <artifactId>elasticsearch-rest-high-level-client</artifactId>
-                <version>${elasticsearch.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.elasticsearch.client</groupId>
-                <artifactId>elasticsearch-rest-client</artifactId>
-                <version>${elasticsearch.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.elasticsearch</groupId>
-                <artifactId>elasticsearch</artifactId>
-                <version>${elasticsearch.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.kafka</groupId>
-                <artifactId>kafka-clients</artifactId>
-                <version>${kafka.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>sjf4j-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <version>${servlet.api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.dromara.easy-es</groupId>
-                <artifactId>easy-es-boot-starter</artifactId>
-                <version>${easy-es-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.zxing</groupId>
-                <artifactId>core</artifactId>
-                <version>3.3.0</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.zxing</groupId>
-                <artifactId>javase</artifactId>
-                <version>3.3.0</version>
+                <groupId>com.zhongzhu</groupId>
+                <artifactId>zhongzhu-common-bom</artifactId>
+                <version>${zhongzhu.saas.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
