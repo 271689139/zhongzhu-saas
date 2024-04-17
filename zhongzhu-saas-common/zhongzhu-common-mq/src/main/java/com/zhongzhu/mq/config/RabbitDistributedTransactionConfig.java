@@ -40,6 +40,7 @@ public class RabbitDistributedTransactionConfig {
         factory.setConcurrentConsumers(3);
         // 为最大连接池数量
         factory.setMaxConcurrentConsumers(10);
+        // 消息需要手动确认
         factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
         return factory;
     }
@@ -48,6 +49,7 @@ public class RabbitDistributedTransactionConfig {
     public RabbitTemplate customRabbitTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMandatory(true);
+        // 发布确认
         rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -> {
             log.info("correlationData:{}, ack:{}, cause:{}", correlationData, ack, cause);
             if (ack && null != correlationData) {
@@ -60,6 +62,7 @@ public class RabbitDistributedTransactionConfig {
                 log.error("消息投递至交换机失败, correlationData:{}", correlationData);
             }
         });
+        // 退回确认
         rabbitTemplate.setReturnsCallback((returnCallback) -> {
             log.error("消息无法路由！message:{}, replyCode:{} replyText:{} exchange:{} routingKey:{}", new String(returnCallback.getMessage().getBody()), returnCallback.getReplyCode(), returnCallback.getReplyText(), returnCallback.getExchange(), returnCallback.getRoutingKey());
             transMessageService.handleMessageReturn(returnCallback.getMessage().getMessageProperties().getMessageId(), returnCallback.getExchange(), returnCallback.getRoutingKey(), new String(returnCallback.getMessage().getBody()));
