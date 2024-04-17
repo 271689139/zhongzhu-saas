@@ -8,7 +8,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author admin
+ * @author shihao.liu
  */
 @Slf4j
 @RequiredArgsConstructor

@@ -67,4 +67,31 @@ spring:
         # IP白名单
         allow: 127.0.0.1
         # IP黑名单（共同存在时，deny优先于allow）
-        deny:
+        #deny:
+
+# knife4j 配置
+knife4j:
+  setting:
+    language: zh_cn
+    swagger-model-name: '实体类名单'
+  enable: true
+  #开启生产环境屏蔽
+  production: false
+  #是否启用登录认证
+  basic:
+    enable: true
+    username: knife4j
+    password: knife4j
+# spring doc
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: '${spring.application.name}'
+      display-name: '${spring.application.name}'
+      paths-to-match: '/**'
+      packages-to-scan: com.zhongzhu.property.controller
+  default-flat-param-object: true

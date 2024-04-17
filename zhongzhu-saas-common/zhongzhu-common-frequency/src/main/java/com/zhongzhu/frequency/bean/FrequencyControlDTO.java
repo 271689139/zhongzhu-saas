@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 限流策略定义
  *
- * @author admin
+ * @author shihao.liu
  */
 @Data
 @ToString

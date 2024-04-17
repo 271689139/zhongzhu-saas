@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author admin
+ * @author shihao.liu
  * 抽象类频控服务 -使用redis实现 维护一个令牌桶来限制操作的发生次数
  */
 @Slf4j

@@ -77,6 +77,8 @@
         <druid.spring.boot.starter.version>1.2.22</druid.spring.boot.starter.version>
         <!--jdbc 版本-->
         <spring.boot.starter.jdbc.version>3.2.3</spring.boot.starter.jdbc.version>
+        <!--amqp 版本-->
+<!--        <spring.boot.starter.amqp.version>3.2.0</spring.boot.starter.amqp.version>-->
     </properties>
 
     <dependencyManagement>
@@ -91,11 +93,11 @@
                 <artifactId>commons-pool2</artifactId>
                 <version>${commons.pool2.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.alibaba.nacos</groupId>
-                <artifactId>nacos-client</artifactId>
-                <version>${nacos.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.alibaba.nacos</groupId>-->
+<!--                <artifactId>nacos-client</artifactId>-->
+<!--                <version>${nacos.version}</version>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>org.springframework.retry</groupId>
@@ -141,6 +143,12 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
             <!-- 定义 lombok 版本 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -159,6 +167,12 @@
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-server</artifactId>
                 <version>${spring-boot-admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.openapi3.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jsoup</groupId>
@@ -265,11 +279,6 @@
                 <version>${zhongzhu.saas.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.zhongzhu</groupId>
-                <artifactId>zhongzhu-common-trace</artifactId>
-                <version>${zhongzhu.saas.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.github.ulisesbocchio</groupId>
                 <artifactId>jasypt-spring-boot-starter</artifactId>
                 <version>${jasypt.version}</version>
@@ -299,12 +308,17 @@
                 <artifactId>druid-spring-boot-3-starter</artifactId>
                 <version>${druid.spring.boot.starter.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-jdbc</artifactId>
-                <version>${spring.boot.starter.jdbc.version}</version>
-            </dependency>
-            <!--zhongzhu-saas-property-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-jdbc</artifactId>-->
+<!--                <version>${spring.boot.starter.jdbc.version}</version>-->
+<!--            </dependency>-->
+
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-amqp</artifactId>-->
+<!--                <version>${spring.boot.starter.amqp.version}</version>-->
+<!--            </dependency>-->
             <dependency>
                 <groupId>com.zhongzhu</groupId>
                 <artifactId>zhongzhu-saas-property-client</artifactId>

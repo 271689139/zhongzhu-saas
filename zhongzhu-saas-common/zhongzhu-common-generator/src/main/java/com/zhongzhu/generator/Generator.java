@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author admin
+ * @author shihao.liu
  * 生成代码
  */
 public class Generator {
@@ -38,7 +38,8 @@ public class Generator {
         String service = "service";
         //Service Impl 包名
         String serviceImpl = "service.impl";
-        /*String controller = "controller";//Controller 包名*/
+        //Controller 包名
+        String controller = "controller";
         //要生成的数据库表
         List<String> tables = new ArrayList<>();
         tables.add("system_version");
@@ -51,8 +52,8 @@ public class Generator {
                 })
                 //包配置
                 .packageConfig(builder -> {
-                    builder.parent(parent).moduleName(moduleName).entity(entity).mapper(mapper).xml(mapperXml).service(service).serviceImpl(serviceImpl);
-//                    .controller(controller);
+                    builder.parent(parent).moduleName(moduleName).entity(entity).mapper(mapper).xml(mapperXml).service(service).serviceImpl(serviceImpl)
+                    .controller(controller);
                 })
                 //策略配置
                 .strategyConfig(builder -> builder.addInclude(tables)
@@ -71,10 +72,9 @@ public class Generator {
                         //开启生成controller
                         .controllerBuilder()
                         // 映射路径使用连字符格式，而不是驼峰
-                        .enableHyphenStyle().formatFileName("%sController")//格式化文件名称
-                        .enableRestStyle()).templateEngine(new VelocityTemplateEngine())
-                .templateConfig(builder -> builder.controller(""))
-                .execute();
+                        .enableHyphenStyle()
+                        .enableRestStyle().build()).execute();
+
     }
 
 }

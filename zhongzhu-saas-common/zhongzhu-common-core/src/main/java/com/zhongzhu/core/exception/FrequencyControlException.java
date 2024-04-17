@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 /**
  * 自定义限流异常
  *
- * @author admin
+ * @author shihao.liu
  */
 
 @EqualsAndHashCode(callSuper = true)

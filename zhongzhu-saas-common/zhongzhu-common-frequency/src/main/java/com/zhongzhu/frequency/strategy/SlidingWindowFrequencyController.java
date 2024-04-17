@@ -15,7 +15,7 @@ import java.util.Objects;
 /**
  * 抽象类频控服务 -使用redis实现 滑动窗口是一种更加灵活的频率控制策略，它在一个滑动的时间窗口内限制操作的发生次数
  *
- * @author admin
+ * @author shihao.liu
  */
 @Slf4j
 @Service

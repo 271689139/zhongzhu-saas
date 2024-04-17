@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.Properties;
 
 /**
- * @author admin
+ * @author shihao.liu
  */
 public class KafkaProducerFactory implements PooledObjectFactory<KafkaProducer<String, String>>, Serializable {
     private Properties properties = new Properties();

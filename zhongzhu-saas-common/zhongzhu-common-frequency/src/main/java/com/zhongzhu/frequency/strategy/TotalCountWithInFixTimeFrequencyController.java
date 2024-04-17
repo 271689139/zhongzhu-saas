@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * @author admin
+ * @author shihao.liu
  * 抽象类频控服务 -使用redis实现 固定时间内不超过固定次数的限流类
  */
 @Slf4j
@@ -37,7 +37,7 @@ public class TotalCountWithInFixTimeFrequencyController extends AbstractFrequenc
             int frequencyControlCount = frequencyControlMap.get(key).getCount();
             if (Objects.nonNull(count) && count >= frequencyControlCount) {
                 //频率超过了
-                log.warn("frequencyControl limit key:{},count:{}", key, count);
+                log.error("frequencyControl limit key:{},count:{}", key, count);
                 return true;
             }
         }

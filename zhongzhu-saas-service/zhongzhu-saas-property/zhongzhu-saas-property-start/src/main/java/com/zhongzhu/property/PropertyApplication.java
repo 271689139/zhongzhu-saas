@@ -12,7 +12,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import java.net.InetAddress;
 
 /**
- * @author admin
+ * @author shihao.liu
  * 启动类
  */
 @SpringBootApplication(scanBasePackages = "com.zhongzhu.*")

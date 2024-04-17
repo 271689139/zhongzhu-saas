@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author admin
+ * @author shihao.liu
  * 频控注解
  */
 @Repeatable(FrequencyControlContainer.class)

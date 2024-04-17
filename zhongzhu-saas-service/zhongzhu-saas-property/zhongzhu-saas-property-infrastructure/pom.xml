@@ -39,5 +39,11 @@
             <groupId>com.zhongzhu</groupId>
             <artifactId>zhongzhu-common-trace</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.zhongzhu</groupId>
+            <artifactId>zhongzhu-saas-property-client</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

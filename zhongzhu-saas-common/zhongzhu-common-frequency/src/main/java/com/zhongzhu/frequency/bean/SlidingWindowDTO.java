@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * @author admin
+ * @author shihao.liu
  * 限流策略定义
  */
 @EqualsAndHashCode(callSuper = true)

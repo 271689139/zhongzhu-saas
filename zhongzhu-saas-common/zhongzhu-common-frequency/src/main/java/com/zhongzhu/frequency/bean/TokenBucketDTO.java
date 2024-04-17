@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * @author admin
+ * @author shihao.liu
  * 令牌桶
  */
 @EqualsAndHashCode(callSuper = true)

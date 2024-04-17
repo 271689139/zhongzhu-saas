@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 限流工具类 提供编程式的限流调用方法
  *
- * @author admin
+ * @author shihao.liu
  */
 public class FrequencyControlUtil {
 

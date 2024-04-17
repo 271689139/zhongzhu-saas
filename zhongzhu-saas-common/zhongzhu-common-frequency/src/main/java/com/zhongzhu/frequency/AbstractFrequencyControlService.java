@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * 抽象类频控服务 其他类如果要实现限流服务 直接注入使用通用限流类 后期会通过继承此类实现令牌桶等算法
  *
  * @param <K>
- * @author admin
+ * @author shihao.liu
  */
 @Slf4j
 public abstract class AbstractFrequencyControlService<K extends FrequencyControlDTO> {
