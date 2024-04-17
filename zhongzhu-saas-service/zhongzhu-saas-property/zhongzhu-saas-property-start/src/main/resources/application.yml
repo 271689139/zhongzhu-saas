@@ -14,9 +14,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3307/lsh-dev?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
     username: root
-    password: root
     # druid 连接池管理
     druid:
+      password: ''
+      # 密码解析
+      password-callback-class-name: com.zhongzhu.druid.callback.AesDruidPasswordCallback
     # 初始化时建立物理连接的个数
       initial-size: 5
       # 连接池的最小空闲数量
@@ -46,7 +48,10 @@ spring:
       # 合并多个DruidDataSource的监控数据
       use-global-data-source-stat: true
       # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
-      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      connect-properties:
+        key: UsCKA0aRncTvzK+zA9bzjUlBFpsZXz2FLAjX25Dubog=
+        pwd: aAhFMUu78XCjgggH0tpiyw==
       web-stat-filter:
         # 是否启用StatFilter默认值true
         enabled: true
