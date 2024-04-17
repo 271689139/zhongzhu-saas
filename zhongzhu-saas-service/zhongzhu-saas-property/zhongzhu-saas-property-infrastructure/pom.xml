@@ -45,5 +45,10 @@
             <artifactId>zhongzhu-saas-property-client</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.zhongzhu</groupId>
+            <artifactId>zhongzhu-common-mq</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

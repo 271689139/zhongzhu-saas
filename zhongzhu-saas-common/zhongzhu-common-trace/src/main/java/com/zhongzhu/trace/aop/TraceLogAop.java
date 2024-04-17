@@ -1,5 +1,6 @@
 package com.zhongzhu.trace.aop;
 
+import com.zhongzhu.core.i18n.SysConstants;
 import com.zhongzhu.core.response.GenericBaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.ThreadContext;
@@ -17,13 +18,11 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class TraceLogAop {
 
-    private static final String TRACE_ID = "trace-id";
-
     @Around("execution(* com.zhongzhu.*.controller.*.*(..))")
     public Object doAround(ProceedingJoinPoint point) throws Throwable {
         Object proceed = point.proceed();
         if (proceed instanceof GenericBaseResponse<?> result) {
-            result.setTraceId(ThreadContext.get(TRACE_ID));
+            result.setTraceId(ThreadContext.get(SysConstants.TRACE_ID));
             return result;
         }
         return proceed;

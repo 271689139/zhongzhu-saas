@@ -324,6 +324,12 @@
                 <artifactId>zhongzhu-saas-property-client</artifactId>
                 <version>${zhongzhu.saas.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.zhongzhu</groupId>
+                <artifactId>zhongzhu-common-mq</artifactId>
+                <version>${zhongzhu.saas.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.zhongzhu</groupId>
                 <artifactId>zhongzhu-saas-property-adapter</artifactId>

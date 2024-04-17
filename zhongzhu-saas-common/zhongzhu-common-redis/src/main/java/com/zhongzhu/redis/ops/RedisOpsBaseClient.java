@@ -1,5 +1,6 @@
 package com.zhongzhu.redis.ops;
 
+import com.zhongzhu.core.i18n.SysConstants;
 import io.micrometer.common.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +14,7 @@ import java.util.*;
 @Slf4j
 public class RedisOpsBaseClient {
 
-    @Value("${spring.application.name}")
+    @Value("${" + SysConstants.SPRING_APPLICATION_NAME + "}")
     private String prefix;
 
     protected String wrapperKey(String key) {

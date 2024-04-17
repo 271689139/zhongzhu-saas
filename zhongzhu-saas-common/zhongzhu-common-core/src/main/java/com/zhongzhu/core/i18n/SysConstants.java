@@ -85,4 +85,10 @@ public final class SysConstants {
 
 	public static final String THREADS_VIRTUAL_ENABLED = "threads.virtual.enabled";
 
+	public static final String TRACE_ID = "trace-id";
+
+	public static final String SPRING_APPLICATION_NAME = "spring.application.name";
+
+	public static final String CONTENT_TYPE = "application/json";
+
 }

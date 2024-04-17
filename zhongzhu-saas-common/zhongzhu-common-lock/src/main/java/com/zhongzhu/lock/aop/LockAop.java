@@ -3,6 +3,7 @@ package com.zhongzhu.lock.aop;
 import com.zhongzhu.core.exception.ExceptionCodeMappingEnum;
 import com.zhongzhu.core.exception.SystemException;
 import com.zhongzhu.core.i18n.ObjectUtil;
+import com.zhongzhu.core.i18n.SysConstants;
 import com.zhongzhu.core.utils.IdGenerator;
 import com.zhongzhu.lock.Lock;
 import com.zhongzhu.lock.RedissonLock;
@@ -34,11 +35,7 @@ import java.lang.reflect.Method;
 @Slf4j
 @RequiredArgsConstructor
 public class LockAop {
-
     public static final String UNDER = "_";
-
-    public static final String SPRING_APPLICATION_NAME = "spring.application.name";
-
 
     private final Environment environment;
 
@@ -54,7 +51,7 @@ public class LockAop {
         Assert.isTrue(ObjectUtil.isNotNull(lock4j), "@Lock4j is null");
         String appName = UNDER;
         if (lock4j.enable()) {
-            appName += environment.getProperty(SPRING_APPLICATION_NAME);
+            appName += environment.getProperty(SysConstants.SPRING_APPLICATION_NAME);
         }
         // key + 时间戳 + 应用名称
         String key = lock4j.key() + IdGenerator.SystemClock.now() + appName;

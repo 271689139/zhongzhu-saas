@@ -1,5 +1,6 @@
 package com.zhongzhu.trace.interceptor;
 
+import com.zhongzhu.core.i18n.SysConstants;
 import io.micrometer.common.lang.NonNullApi;
 import io.micrometer.common.lang.Nullable;
 import io.micrometer.common.util.StringUtils;
@@ -11,6 +12,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.util.UUID;
 
+import static com.zhongzhu.core.i18n.SysConstants.*;
+
 /**
  * @author shihao.liu
  */
@@ -18,7 +21,6 @@ import java.util.UUID;
 @Slf4j
 public class TraceInterceptor implements HandlerInterceptor {
 
-    private static final String TRACE_ID = "trace-id";
 
 
     @Override

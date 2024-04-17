@@ -68,7 +68,13 @@ spring:
         allow: 127.0.0.1
         # IP黑名单（共同存在时，deny优先于allow）
         #deny:
-
+  # rabbit Mq 配置
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
 # knife4j 配置
 knife4j:
   setting:
@@ -95,3 +101,4 @@ springdoc:
       paths-to-match: '/**'
       packages-to-scan: com.zhongzhu.property.controller
   default-flat-param-object: true
+
