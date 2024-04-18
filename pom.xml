@@ -35,6 +35,7 @@
     <modules>
         <module>zhongzhu-saas-common</module>
         <module>zhongzhu-saas-service</module>
+        <module>zhongzhu-saas-cloud</module>
     </modules>
 
     <dependencyManagement>
