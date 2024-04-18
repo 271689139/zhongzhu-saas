@@ -19,7 +19,7 @@ spring:
       password: ''
       # 密码解析
       password-callback-class-name: com.zhongzhu.druid.callback.AesDruidPasswordCallback
-    # 初始化时建立物理连接的个数
+      # 初始化时建立物理连接的个数
       initial-size: 5
       # 连接池的最小空闲数量
       min-idle: 5
@@ -89,6 +89,10 @@ spring:
     publisher-confirm-type: correlated
     # 开启消息回退
     publisher-returns: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:5000
 # knife4j 配置
 knife4j:
   setting:
@@ -116,3 +120,19 @@ springdoc:
       packages-to-scan: com.zhongzhu.property.controller
   default-flat-param-object: true
 
+# 注册服务端点
+# 打开客户端Actuator的监控
+management:
+  endpoint:
+    health:
+      show-details: always
+      enabled: true
+    beans:
+      enabled: true
+    logfile:
+      external-file: ./logs/zhongzhu-saas-property.log
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    enabled-by-default: true
