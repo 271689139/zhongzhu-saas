@@ -27,7 +27,7 @@ mybatis-plus:
     # 全自动映射
     auto-mapping-behavior: full
     # sql日志打印
-    # log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
     # 设置是否自增
     use-generated-keys: true
   global-config:

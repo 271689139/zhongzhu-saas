@@ -13,7 +13,7 @@ public enum TransMessageType {
      */
     RECEIVE,
     /**
-     * 发送到交换机成功
+     * 交换机路由失败
      */
     LOST,
     /**

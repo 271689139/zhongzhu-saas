@@ -52,6 +52,11 @@ spring:
       connect-properties:
         key: UsCKA0aRncTvzK+zA9bzjUlBFpsZXz2FLAjX25Dubog=
         pwd: aAhFMUu78XCjgggH0tpiyw==
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 3000
       web-stat-filter:
         # 是否启用StatFilter默认值true
         enabled: true
