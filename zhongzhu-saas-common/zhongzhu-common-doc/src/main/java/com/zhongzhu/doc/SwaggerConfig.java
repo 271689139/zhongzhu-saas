@@ -1,6 +1,5 @@
 package com.zhongzhu.doc;
 
-import com.zhongzhu.core.i18n.SysConstants;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
@@ -9,14 +8,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
-import static com.zhongzhu.core.i18n.SysConstants.*;
 
 /**
  * @author shihao.liu
  */
 @Configuration
 public class SwaggerConfig {
-
 
 
     private Environment environment;
@@ -51,12 +48,7 @@ public class SwaggerConfig {
 //    }
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI()
-                .info(new Info()
-                        .title(environment.getProperty(SPRING_APPLICATION_NAME))
-                        .version("1.0")
-                        .description(environment.getProperty(SPRING_APPLICATION_NAME))
-                        .contact(new Contact().name("shihao.liu").email("271689139@qq.com")));
+        return new OpenAPI().info(new Info().title(environment.getProperty("spring.application.name")).version("1.0").description(environment.getProperty("spring.application.name")).contact(new Contact().name("shihao.liu").email("271689139@qq.com")));
     }
 
 }

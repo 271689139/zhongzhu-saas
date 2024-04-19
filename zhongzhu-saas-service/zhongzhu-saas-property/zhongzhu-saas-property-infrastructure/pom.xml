@@ -49,6 +49,9 @@
             <groupId>com.zhongzhu</groupId>
             <artifactId>zhongzhu-common-mq</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.zhongzhu</groupId>
+            <artifactId>zhongzhu-common-flowable</artifactId>
+        </dependency>
     </dependencies>
 </project>

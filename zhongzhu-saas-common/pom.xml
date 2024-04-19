@@ -31,6 +31,7 @@
         <module>zhongzhu-common-lock</module>
         <module>zhongzhu-common-frequency</module>
         <module>zhongzhu-common-druid</module>
+        <module>zhongzhu-common-flowable</module>
     </modules>
 
 </project>

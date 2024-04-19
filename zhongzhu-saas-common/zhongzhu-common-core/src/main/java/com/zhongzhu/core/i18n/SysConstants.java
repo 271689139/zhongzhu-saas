@@ -1,6 +1,8 @@
 package com.zhongzhu.core.i18n;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.regex.Pattern;
 
 /**
@@ -90,5 +92,9 @@ public final class SysConstants {
 	public static final String SPRING_APPLICATION_NAME = "spring.application.name";
 
 	public static final String CONTENT_TYPE = "application/json";
+
+	public static final String PERCENT = "%";
+
+	public static final String USER_ID = "userId";
 
 }

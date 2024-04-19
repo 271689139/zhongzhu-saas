@@ -77,8 +77,9 @@
         <druid.spring.boot.starter.version>1.2.22</druid.spring.boot.starter.version>
         <!--jdbc 版本-->
         <spring.boot.starter.jdbc.version>3.2.3</spring.boot.starter.jdbc.version>
-        <!--amqp 版本-->
-<!--        <spring.boot.starter.amqp.version>3.2.0</spring.boot.starter.amqp.version>-->
+        <!--flowable版本-->
+        <flowable.version>7.0.1</flowable.version>
+
     </properties>
 
     <dependencyManagement>
@@ -343,6 +344,19 @@
             <dependency>
                 <groupId>com.zhongzhu</groupId>
                 <artifactId>zhongzhu-saas-property-domain</artifactId>
+                <version>${zhongzhu.saas.version}</version>
+            </dependency>
+            <!-- 定义 flowable 版本 -->
+            <dependency>
+                <groupId>org.flowable</groupId>
+                <artifactId>flowable-spring-boot-starter-process</artifactId>
+                <version>${flowable.version}</version>
+            </dependency>
+
+            <!--审批流模块-->
+            <dependency>
+                <groupId>com.zhongzhu</groupId>
+                <artifactId>zhongzhu-common-flowable</artifactId>
                 <version>${zhongzhu.saas.version}</version>
             </dependency>
         </dependencies>

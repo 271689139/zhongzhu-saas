@@ -1,5 +1,6 @@
 package com.zhongzhu.core.exception;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -20,7 +21,11 @@ public enum ExceptionCodeMappingEnum {
 
     // **** 业务异常*** //
 
-    CAPACITY_REFILL_ERROR("1001", "Capacity and refill rate must be positive");
+    CAPACITY_REFILL_ERROR("1001", "Capacity and refill rate must be positive"),
+
+    P_SYSTEM_ID_IS_NULL("P_SYSTEM_ID_IS_NULL","ID不能为空"),
+
+    OAUTH2_TENANT_ID_REQUIRE("OAUTH2_TENANT_ID_REQUIRE","公司ID不能为空");
 
     private String code;
 

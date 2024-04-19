@@ -102,6 +102,10 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.zhongzhu</groupId>
+            <artifactId>zhongzhu-common-doc</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

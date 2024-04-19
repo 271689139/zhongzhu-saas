@@ -23,6 +23,18 @@
             <groupId>com.zhongzhu</groupId>
             <artifactId>zhongzhu-common-doc</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.zhongzhu</groupId>
+            <artifactId>zhongzhu-common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>transmittable-thread-local</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
