@@ -32,6 +32,7 @@
         <module>zhongzhu-common-frequency</module>
         <module>zhongzhu-common-druid</module>
         <module>zhongzhu-common-flowable</module>
+        <module>zhongzhu-common-user</module>
     </modules>
 
 </project>

@@ -22,9 +22,15 @@ import static lombok.AccessLevel.PRIVATE;
 @Schema(name = "Start", description = "开始")
 public class Start extends AggregateRoot<Long> {
 
+    /**
+     * 流程定义的
+     */
     @Schema(name = "definitionKey", description = "定义Key")
     private String definitionKey;
 
+    /**
+     * 流程部署完之后的ID
+     */
     @Schema(name = "businessKey", description = "业务Key")
     private String businessKey;
 

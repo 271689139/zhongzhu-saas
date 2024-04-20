@@ -53,5 +53,9 @@
             <groupId>com.zhongzhu</groupId>
             <artifactId>zhongzhu-common-flowable</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.zhongzhu</groupId>
+            <artifactId>zhongzhu-common-user</artifactId>
+        </dependency>
     </dependencies>
 </project>

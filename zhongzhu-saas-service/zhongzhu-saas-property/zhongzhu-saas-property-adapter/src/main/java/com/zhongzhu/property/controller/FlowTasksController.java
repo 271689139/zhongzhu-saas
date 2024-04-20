@@ -3,10 +3,9 @@ package com.zhongzhu.property.controller;
 import com.zhongzhu.core.dto.Datas;
 import com.zhongzhu.core.request.GenericBaseRequest;
 import com.zhongzhu.core.response.GenericBaseResponse;
-import com.zhongzhu.flowable.dto.AssigneeDTO;
-import com.zhongzhu.flowable.dto.TaskAssigneeGetQry;
-import com.zhongzhu.flowable.dto.TaskDTO;
-import com.zhongzhu.flowable.dto.TaskListQry;
+import com.zhongzhu.core.utils.ConvertUtil;
+import com.zhongzhu.flowable.dto.*;
+import com.zhongzhu.flowable.dto.task.Start;
 import com.zhongzhu.flowable.service.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -35,5 +34,12 @@ public class FlowTasksController {
     @Operation(summary = "任务流程", description = "流程人员")
     public GenericBaseResponse<AssigneeDTO> assignee(@PathVariable("instanceId") String instanceId) {
         return GenericBaseResponse.ok(taskService.getAssigneeByInstanceId(new TaskAssigneeGetQry(instanceId)));
+    }
+
+    @PostMapping("start")
+    @Operation(summary = "任务流程", description = "开始任务流程")
+    public GenericBaseResponse<Boolean> start(@RequestBody GenericBaseRequest<TaskStartDTO> request) {
+        taskService.start(ConvertUtil.sourceToTarget(request.getParam(), Start.class));
+        return GenericBaseResponse.ok(Boolean.TRUE);
     }
 }

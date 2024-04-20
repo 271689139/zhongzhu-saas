@@ -38,6 +38,8 @@ public class UserContextHolder {
     public static User get() {
         User user = new User();
         user.setTenantId(1L);
+        user.setId(9999L);
+        user.setUsername("系统管理员");
         return Optional.ofNullable(USER_LOCAL.get()).orElse(user);
     }
 

@@ -359,6 +359,12 @@
                 <artifactId>zhongzhu-common-flowable</artifactId>
                 <version>${zhongzhu.saas.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.zhongzhu</groupId>
+                <artifactId>zhongzhu-common-user</artifactId>
+                <version>${zhongzhu.saas.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
